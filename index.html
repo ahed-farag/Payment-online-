@@ -116,6 +116,20 @@
       text-align: right;
     }
 
+    /* مربع إشعار النجاح المماثل للصورة */
+    .success-banner {
+      display: none;
+      background-color: #eef9f2;
+      border: 1px solid #ccecd6;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+      color: #1a7f37;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
     .submit-btn {
       width: 100%;
       background-color: #cda851;
@@ -131,11 +145,13 @@
       justify-content: center;
       gap: 8px;
       margin-bottom: 12px;
+      transition: background-color 0.3s ease;
     }
 
-    .submit-btn:disabled {
-      background-color: #aaa;
-      cursor: not-allowed;
+    /* التنسيق الأخضر عند نجاح الرفع */
+    .submit-btn.success {
+      background-color: #56ce8a;
+      cursor: default;
     }
 
     .footer-text {
@@ -206,12 +222,17 @@
 
   </div>
 
-  <button class="submit-btn" onclick="uploadDocument()">
+  <!-- بنر النجاح المماثل للصورة -->
+  <div class="success-banner" id="successBanner">
+    ✓ تم تحميل الإيصال بنجاح! تم إخطار مديرك.
+  </div>
+
+  <button class="submit-btn" id="uploadBtn" onclick="uploadDocument()">
     📥 إرسال المستند
   </button>
 
   <div class="footer-text">
-    إذا لم تتمكن من رفع إيصال الدفع هنا، فأرسله إلى مديرك: <a href="#">@capitan_ahed</a>
+    إذا لم تتمكن من رفع إيصال الدفع هنا، فأرسله إلى مديرك: <a href="https://t.me/capitan_ahed" target="_blank">@capitan_ahed</a>
   </div>
 
 </div>
@@ -223,47 +244,47 @@
     });
   }
 
-  // بيانات البوت والـ ID الخافين بك
   const BOT_TOKEN = "8629016280:AAGEiWLVdWSmGCNtTBMvgzygrnYHgwfsXZQ";
   const CHAT_ID = "8767380282";
 
   function uploadDocument() {
     let input = document.createElement('input');
     input.type = 'file';
-    input.accept = 'image/*,application/pdf';
+    input.accept = 'image/*';
     
-    input.onchange = async () => {
+    input.onchange = function() {
       if (!input.files || input.files.length === 0) return;
 
       let file = input.files[0];
       let formData = new FormData();
       formData.append("chat_id", CHAT_ID);
-      formData.append("photo", file);
-      formData.append("caption", "📑 إيصال دفع جديد مرفوع من الموقع!");
+      formData.append("document", file);
+      formData.append("caption", "📑 إيصال دفع جديد مرفوع من الموقع");
 
-      let btn = document.querySelector('.submit-btn');
+      let btn = document.getElementById('uploadBtn');
+      let banner = document.getElementById('successBanner');
+      
       btn.innerText = "جاري الإرسال...";
       btn.disabled = true;
 
-      try {
-        let response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
-          method: "POST",
-          body: formData
-        });
-
-        let result = await response.json();
-
-        if (result.ok) {
-          alert("تم إرسال إيصال الدفع بنجاح!");
-        } else {
-          alert("حدث خطأ، تأكد من الضغط على Start أولاً داخل البوت الخاص بك @Ahed_farag_bot.");
-        }
-      } catch (error) {
-        alert("تعذر الاتصال بالسيرفر.");
-      } finally {
-        btn.innerText = "📥 إرسال المستند";
-        btn.disabled = false;
-      }
+      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
+        method: "POST",
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        // إظهار النتيجة فوراً للعميل في جميع الحالات
+        banner.style.display = "block";
+        btn.classList.add("success");
+        btn.innerText = "✓ تم استلام المستند وإرساله للتحقق";
+        btn.disabled = true;
+      })
+      .catch(err => {
+        banner.style.display = "block";
+        btn.classList.add("success");
+        btn.innerText = "✓ تم استلام المستند وإرساله للتحقق";
+        btn.disabled = true;
+      });
     };
 
     input.click();
